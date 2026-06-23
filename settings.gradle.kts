@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "MovieDbApp"
 include(":app")
- 
+include(":data:tmdb")
+include(":core:network")
+include(":core:navigation")
