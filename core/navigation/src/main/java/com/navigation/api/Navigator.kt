@@ -1,15 +1,15 @@
 package com.navigation.api
 
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.serialization.Serializable
+
+@Serializable
+data object Home
+
+@Serializable
+data object Details
 
 interface Navigator {
-    val navigationCommands: SharedFlow<NavigationCommand>
-
-    fun navigateTo(route: Any)
-    fun navigateUp()
-}
-
-sealed interface NavigationCommand {
-    data class To(val route: Any) : NavigationCommand
-    data object Back : NavigationCommand
+    fun navigateToHome()
+    fun navigateToDetails()
+    fun navigateBack()
 }

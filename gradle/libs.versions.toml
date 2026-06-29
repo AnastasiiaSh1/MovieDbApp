@@ -10,9 +10,11 @@ activityCompose = "1.12.4"
 composeBom = "2024.09.00"
 appcompat = "1.6.1"
 material = "1.10.0"
+kotlinxSerialization = "1.7.3"
 navigationCompose = "2.9.8"
 
 [libraries]
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

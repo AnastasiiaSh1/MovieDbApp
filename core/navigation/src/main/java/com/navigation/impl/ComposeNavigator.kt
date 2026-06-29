@@ -1,24 +1,33 @@
 package com.navigation.impl
 
-import com.navigation.api.NavigationCommand
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.navigation.api.Navigator
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import com.navigation.api.Home
+import com.navigation.api.Details
 
-class ComposeNavigator: Navigator {
-    private val _navigationCommands = MutableSharedFlow<NavigationCommand>(
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    override val navigationCommands: SharedFlow<NavigationCommand> = _navigationCommands.asSharedFlow()
+internal class ComposeNavigator(private val nav: NavHostController) : Navigator {
+    override fun navigateToHome() { nav.navigate(Home) }
+    override fun navigateToDetails() { nav.navigate(Details) }
+    override fun navigateBack() { nav.popBackStack() }
+}
 
-    override fun navigateTo(route: Any) {
-        _navigationCommands.tryEmit(NavigationCommand.To(route))
-    }
+@Composable
+fun NavigationHost(
+    startDestination: Any,
+    builder: NavGraphBuilder.(Navigator) -> Unit
+) {
+    val navController = rememberNavController()
+    val navigator = remember { ComposeNavigator(navController) }
 
-    override fun navigateUp() {
-        _navigationCommands.tryEmit(NavigationCommand.Back)
+    NavHost(
+        navController = navController,
+        startDestination = startDestination
+    ) {
+        builder(navigator)
     }
 }
