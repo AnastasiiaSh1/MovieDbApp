@@ -7,6 +7,7 @@ android {
     namespace = "com.tmdb"
     compileSdk = 36
 
+
     defaultConfig {
         minSdk = 24
 
@@ -36,4 +37,5 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+
 }
