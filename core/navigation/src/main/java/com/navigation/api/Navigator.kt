@@ -9,7 +9,6 @@ data object Home
 data object Details
 
 interface Navigator {
-    fun navigateToHome()
-    fun navigateToDetails()
+    fun navigateTo(destination: Any)
     fun navigateBack()
 }

@@ -7,12 +7,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.navigation.api.Navigator
-import com.navigation.api.Home
-import com.navigation.api.Details
+
 
 internal class ComposeNavigator(private val nav: NavHostController) : Navigator {
-    override fun navigateToHome() { nav.navigate(Home) }
-    override fun navigateToDetails() { nav.navigate(Details) }
+    override fun navigateTo(destination: Any) {
+        nav.navigate(destination)
+    }
     override fun navigateBack() { nav.popBackStack() }
 }
 
